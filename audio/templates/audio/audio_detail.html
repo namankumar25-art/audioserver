@@ -1,0 +1,45 @@
+{% extends "audio/audioserverhome.html" %}
+
+{% block content %}
+		<article class="media content-section">
+	  <div class="media-body">
+	    <div class="article-metadata">
+
+	    	{% if audio_type == 'audiobook' %}
+		    		  <h2>{{ audiobook.title }}</h2>
+		    		  <small class="text-muted">{{ audiobook.upload }}</small><br>
+				      <a class="mr-2">By {{ audiobook.author }}</a><br>
+				      <a class="mr-2">Narrated By {{ audiobook.narrator }}</a><br>
+				      <a class="mr-2">Duration {{ audiobook.duration }}</a><br>	
+
+				      <a class="btn btn-success" href="{% url 'audio-update' 'audiobook' audiobook.id %}" role="button">Update</a>
+				      <a class="btn btn-danger" href="{% url 'audio-delete' 'audiobook' audiobook.id %}" role="button">Delete</a>
+				      
+	    	
+	    	{% elif audio_type == 'podcast' %}
+		    	  	
+		    		  <h2>{{ podcast.name }}</h2>
+		    		  <small class="text-muted">{{ podcast.upload }}</small><br>
+				      <a class="mr-2">By {{ podcast.host }}</a><br>
+				      <a class="mr-2">Duration {{ podcast.duration }}</a><br>
+
+				      <a class="btn btn-success" href="{% url 'audio-update' 'podcast' podcast.id %}" role="button">Update</a>
+				      <a class="btn btn-danger" href="{% url 'audio-delete' 'podcast' podcast.id %}" role="button">Delete</a>
+				     
+
+		    {% elif audio_type == 'song' %}
+		    	 	
+		    		  <h2>{{ song.name }}</h2>
+		    		  <small class="text-muted">{{ song.upload }}</small><br>
+				      <a class="mr-2">Duration {{ song.duration }}</a><br>
+
+				      <a class="btn btn-success" href="{% url 'audio-update' 'song' song.id %}" role="button">Update</a>
+				      <a class="btn btn-danger" href="{% url 'audio-delete' 'song' song.id %}" role="button">Delete</a>
+				      	
+
+	    	{% endif %}
+	  </div>
+	</div>
+	</article>
+{% endblock %}
+

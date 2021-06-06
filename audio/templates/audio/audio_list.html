@@ -1,0 +1,47 @@
+{% extends "audio/audioserverhome.html" %}
+
+{% block content %}
+		<article class="media content-section">
+	  <div class="media-body">
+	    <div class="article-metadata">
+
+	    	{% if audio_type == 'audiobook' %}
+	    		<h1>List of Audiobooks</h1>
+	    		<a class="btn btn-dark" href="{% url 'audio-create' 'audiobook' %}" role="button">Add Audiobook</a>
+		    	{% for object in audiobook %}  	
+		    		  <h2><a class="mr-2">{{ object.id }}</a> <a class="mr-2" href="{% url 'audio-detail' 'audiobook' object.id %}">{{ object.title }}</a></h2>
+		    		  <small class="text-muted">{{ object.upload }}</small><br>
+				      <a class="mr-2">By {{ object.author }}</a><br>
+				      <a class="mr-2">Narrated By {{ object.narrator }}</a><br>
+				      <a class="mr-2">Duration {{ object.duration }}</a><br>
+				      			  
+		    	{% endfor %}		    	
+	    	
+	    	{% elif audio_type == 'podcast' %}
+	    		<h1>List of Podcasts</h1>
+	    		<a class="btn btn-dark" href="{% url 'audio-create' 'podcast' %}" role="button">Add Podcast</a>
+		    	{% for object in podcast %}  	
+		    		  <h2><a class="mr-2">{{ object.id }}</a> <a class="mr-2" href="{% url 'audio-detail' 'podcast' object.id %}">{{ object.name }}</a></h2>
+		    		  <small class="text-muted">{{ object.upload }}</small><br>
+				      <a class="mr-2">By {{ object.host }}</a><br>
+				      <a class="mr-2">Duration {{ object.duration }}</a><br>
+				      			  
+		    	{% endfor %}
+
+		    {% elif audio_type == 'song' %}
+		    	<h1>List of Songs</h1>
+		    	<a class="btn btn-dark" href="{% url 'audio-create' 'song' %}" role="button">Add Song</a>
+		    	{% for object in song %}  	
+		    		  <h2><a class="mr-2">{{ object.id }}</a> <a class="mr-2" href="{% url 'audio-detail' 'song' object.id %}">{{ object.name }}</a></h2>
+		    		  <small class="text-muted">{{ object.upload }}</small><br>
+				      <a class="mr-2">Duration {{ object.duration }}</a><br>
+				      			  
+		    	{% endfor %}
+
+	    	{% endif %}
+	  </div>
+	</div>
+	</article>
+
+{% endblock %}
+

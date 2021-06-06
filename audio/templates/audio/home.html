@@ -1,0 +1,39 @@
+{% extends "audio/base.html" %}
+
+{% block content %}
+	<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      Audiobooks
+
+      <ul>
+      	{% for audio in audiobook %}
+      		<li><a href="{% url 'audio-detail' 'audiobook' audio.id %}">{{ audio.title}}</a></li>
+
+      	{% endfor%}
+      </ul>
+    </div>
+    <div class="col-sm">
+     Podcasts
+
+     <ul>
+      	{% for audio in podcast %}
+      		<li><a href="{% url 'audio-detail' 'podcast' audio.id %}">{{ audio.name}}</a></li>
+
+      	{% endfor%}
+      </ul>
+    </div>
+    <div class="col-sm">
+      Songs
+
+      <ul>
+      	{% for audio in song %}
+      		<li><a href="{% url 'audio-detail' 'song' audio.id %}">{{ audio.name}}</a></li>
+
+      	{% endfor%}
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
